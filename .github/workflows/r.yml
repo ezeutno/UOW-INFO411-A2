@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name : Run_Assignment_2
-        run: Rscript 02_Assignment2.R
+        run: Rscript --verbose 02_Assignment2.R > result/result.log
       - uses: actions/upload-artifact@v1
         with:
           name: Package

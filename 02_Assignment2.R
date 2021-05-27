@@ -1,11 +1,6 @@
-dataset = read.csv("creditworthiness.csv")
 
-library(caTools)
+# Answer to Question 1
+source("03_Question1.R", echo = TRUE)
 
-split = sample.split(dataset$functionary, SplitRatio = 0.5)
 
-training_set = subset(dataset, split == TRUE)
-test_set = subset(dataset, split == FALSE)
-
-head(training_set)
-head(test_set)
+length(dataset)
