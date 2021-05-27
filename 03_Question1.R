@@ -8,7 +8,7 @@ dataset = dataset[dataset$credit.rating!=0, ]
 nrow(dataset)
 
 library(caTools)
-split = sample.split(dataset$functionary, SplitRatio = 0.5)
+split = sample.split(dataset$credit.rating, SplitRatio = 1/2)
 
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
