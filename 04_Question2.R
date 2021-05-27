@@ -5,8 +5,7 @@
 library(rpart)
 library(rpart.plot)
 
-tree <- rpart(credit.rating ~ ., data = training_set, method = "class")
-summary(tree)
+tree <- rpart(credit.rating ~ ., data = training_set)
 
 # a Report the resulting tree
 png("result/2_tree.png")
@@ -30,12 +29,29 @@ median_value <- as.data.frame(t(median_value))
 median_value$credit.rating
 
 # predict median value
-predict(tree, newdata=median_value, type = "class")
+predict(tree, newdata=median_value)
 
 # c Produce the confusion matrix for predicting the credit rating from
 # this tree on the test set, and also report the overall accuracy rate.
-cm <- table(truth = test_set$credit.rating, prediction=predict(tree, test_set, type = "class"))
+cm <- table(truth = test_set$credit.rating, prediction=predict(tree, test_set))
 
 cm
 
 sum(diag(cm)/sum(cm))
+
+# What is the numerical value of the gain in entropy corresponding
+# to the first split at the top of the tree? (Use logarithms to base 2, and show
+# the details of the calculation rather than just providing a final answer.)
+
+summary(tree)
+
+entropy <- function(target) {
+  freq <- table(target)/length(target)
+  vec <- as.data.frame(freq)[,2]
+  vec<-vec[vec>0]
+  -sum(vec * log2(vec))
+}
+
+entropy(training_set$functionary)
+
+
