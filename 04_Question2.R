@@ -48,4 +48,17 @@ print(tree)
 # Fit a random forest model to the training set to try to improve
 # prediction. Report the R output.
 
+# library(randomForest)
 
+# trainRandomForest <- training_set
+# testRandomForest <- test_set
+
+# trainRandomForest$credit.rating <- sapply(trainRandomForest$credit.rating, as.factor)
+
+# tree.2 <- randomForest(credit.rating ~ ., data = training_set, ntree = 2, mtry = 4)
+# cm.2 <- table(test_set$credit.rating, predict(tree.2, newdata=test_set, type = "class"))
+# sum(diag(cm.2))/sum(cm.2)
+
+# tree.4 <- randomForest(credit.rating ~ ., data = training_set, ntree = 32, mtry = 4)
+# cm.4 <- table(test_set$credit.rating, predict(tree.4, newdata=test_set, type = "class"))
+# sum(diag(cm.4))/sum(cm.4)
