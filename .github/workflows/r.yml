@@ -6,12 +6,12 @@ on: [push]
 jobs:
   Run_R_Job_Machiene:
     runs-on: ubuntu-latest
-    container: rocker/r-base:3.6.3
+    container: ezeutno/r-base:3.6.3
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      # - name : Install Packages
-      #   run: Rscript 01_install_packages.R
+      - name : Run_Assignment_2
+        run: Rscript 02_Assignment2.R
       - uses: actions/upload-artifact@v1
         with:
           name: Package
