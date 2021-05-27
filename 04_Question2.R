@@ -43,15 +43,9 @@ sum(diag(cm)/sum(cm))
 # to the first split at the top of the tree? (Use logarithms to base 2, and show
 # the details of the calculation rather than just providing a final answer.)
 
-summary(tree)
+print(tree)
 
-entropy <- function(target) {
-  freq <- table(target)/length(target)
-  vec <- as.data.frame(freq)[,2]
-  vec<-vec[vec>0]
-  -sum(vec * log2(vec))
-}
-
-entropy(training_set$functionary)
+# Fit a random forest model to the training set to try to improve
+# prediction. Report the R output.
 
 
