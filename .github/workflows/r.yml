@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name : Install Packages
-        run: Rscript 01_install_packages.R
+      # - name : Install Packages
+      #   run: Rscript 01_install_packages.R
       - uses: actions/upload-artifact@v1
         with:
           name: Package

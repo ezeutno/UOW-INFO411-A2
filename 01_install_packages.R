@@ -1,1 +1,8 @@
 install.packages("ggplot2")
+install.packages("rpart")
+install.packages("e1071")
+install.packages("rpart")
+install.packages("rpart.plot")
+install.packages("tree")
+install.packages("caTools")
+install.packages("RSNNS")
