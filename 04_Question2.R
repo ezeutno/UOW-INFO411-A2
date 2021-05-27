@@ -3,6 +3,7 @@
 
 # Import rpart library
 library(rpart)
+library(rpart.plot)
 
 tree <- rpart(credit.rating ~ ., data = dataset)
 summary(tree)
@@ -11,5 +12,9 @@ summary(tree)
 png("result/2_tree.png")
 plot(tree)
 text(tree)
+dev.off()
+
+png("result/2_tree_rpart.png")
+rpart.plot(tree)
 dev.off()
 
