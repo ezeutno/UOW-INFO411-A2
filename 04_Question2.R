@@ -31,3 +31,11 @@ median_value$credit.rating
 
 # predict median value
 predict(tree, newdata=median_value)
+
+# c Produce the confusion matrix for predicting the credit rating from
+# this tree on the test set, and also report the overall accuracy rate.
+cm <- table(truth = test_set$credit.rating, prediction=predict(tree, test_set))
+
+cm
+
+sum(diag(cm)/sum(cm))
