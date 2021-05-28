@@ -21,7 +21,8 @@ sum(diag(cm.svm))/sum(cm.svm)
 #                                                acceptable.)
 
 library(ROCR)
-svmModel.tune <- tune.svm(credit.rating ~ ., data = training_set, kernel="radial", gamma = 100^(-5:5), cost = 100^(-5:5))
+svmModel.tune <- tune.svm(credit.rating ~ ., data = training_set, kernel="radial", gamma = 0.0159 * 4^(-2:2), cost = 4^(-2:2))
+# svmModel.tune <- tune.svm(credit.rating ~ ., data = training_set, kernel = "radial", gamma = 100^(-5:5), cost = 100^(-5:5))
 svmModel.tuned <- svmModel.tune$best.model
 
 summary(svmModel.tune)
