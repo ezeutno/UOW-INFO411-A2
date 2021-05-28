@@ -21,15 +21,6 @@ dev.off()
 # median customer, i.e., one with the attributes listed in Table 1, showing the
 # steps involved.
 
-median_value <- apply(test_set,2, median)
-
-# Switch it into dataframe & transpose for prediction
-median_value <- data.frame(t(median_value))
-
-median_value[] <- lapply(median_value, function(x) as.integer(as.character(x)))
-
-median_value
-
 # predict median value
 predict(tree, newdata=median_value, type = "class")
 
