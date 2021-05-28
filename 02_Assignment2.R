@@ -10,3 +10,6 @@ source("05_Question3.R", echo = TRUE)
 
 # Answer to Question 4
 source("06_Question4.R", echo = TRUE)
+
+# Answer to Question 6
+source("07_Question6.R", echo = TRUE)
