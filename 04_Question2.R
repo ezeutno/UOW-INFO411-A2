@@ -52,15 +52,12 @@ print(tree)
 
 library(randomForest)
 
-# trainRandomForest <- training_set
-# testRandomForest <- test_set
+tree.rf <- randomForest(credit.rating ~ ., data = training_set,ntree = 10000, mtry = 8, importance = TRUE,proximity = TRUE)
+cm.rf <- table(test_set$credit.rating, predict(tree.rf, newdata=test_set, type = "class"))
+sum(diag(cm.rf))/sum(cm.rf)
 
-# trainRandomForest$credit.rating <- sapply(trainRandomForest$credit.rating, as.factor)
+tree.rf
 
-tree.2 <- randomForest(credit.rating ~ ., data = training_set, importance = TRUE,proximity = TRUE)
-cm.2 <- table(test_set$credit.rating, predict(tree.2, newdata=test_set, type = "class"))
-sum(diag(cm.2))/sum(cm.2)
-
-# tree.4 <- randomForest(credit.rating ~ ., data = training_set, ntree = 32, mtry = 4)
-# cm.4 <- table(test_set$credit.rating, predict(tree.4, newdata=test_set, type = "class"))
-# sum(diag(cm.4))/sum(cm.4)
+png("result/2_tree.png")
+plot(tree.rf)
+dev.off()
