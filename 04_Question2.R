@@ -5,7 +5,7 @@
 library(rpart)
 library(rpart.plot)
 
-tree <- rpart(credit.rating ~ ., data = training_set)
+tree <- rpart(credit.rating ~ ., data = training_set, method = "class")
 
 # a Report the resulting tree
 png("result/2_tree.png")
@@ -18,22 +18,24 @@ rpart.plot(tree)
 dev.off()
 
 # b Based on this output, predict the credit rating of a hypothetical
-# “median” customer, i.e., one with the attributes listed in Table 1, showing the
+# median customer, i.e., one with the attributes listed in Table 1, showing the
 # steps involved.
 
-median_value <- apply(test_set,2,median)
+median_value <- apply(test_set,2, median)
 
 # Switch it into dataframe & transpose for prediction
-median_value <- as.data.frame(t(median_value))
+median_value <- data.frame(t(median_value))
 
-median_value$credit.rating
+median_value[] <- lapply(median_value, function(x) as.integer(as.character(x)))
+
+median_value
 
 # predict median value
-predict(tree, newdata=median_value)
+predict(tree, newdata=median_value, type = "class")
 
 # c Produce the confusion matrix for predicting the credit rating from
 # this tree on the test set, and also report the overall accuracy rate.
-cm <- table(truth = test_set$credit.rating, prediction=predict(tree, test_set))
+cm <- table(truth = test_set$credit.rating, prediction=predict(tree, test_set, type = "class"))
 
 cm
 
@@ -48,16 +50,16 @@ print(tree)
 # Fit a random forest model to the training set to try to improve
 # prediction. Report the R output.
 
-# library(randomForest)
+library(randomForest)
 
 # trainRandomForest <- training_set
 # testRandomForest <- test_set
 
 # trainRandomForest$credit.rating <- sapply(trainRandomForest$credit.rating, as.factor)
 
-# tree.2 <- randomForest(credit.rating ~ ., data = training_set, ntree = 2, mtry = 4)
-# cm.2 <- table(test_set$credit.rating, predict(tree.2, newdata=test_set, type = "class"))
-# sum(diag(cm.2))/sum(cm.2)
+tree.2 <- randomForest(credit.rating ~ ., data = training_set, importance = TRUE,proximity = TRUE)
+cm.2 <- table(test_set$credit.rating, predict(tree.2, newdata=test_set, type = "class"))
+sum(diag(cm.2))/sum(cm.2)
 
 # tree.4 <- randomForest(credit.rating ~ ., data = training_set, ntree = 32, mtry = 4)
 # cm.4 <- table(test_set$credit.rating, predict(tree.4, newdata=test_set, type = "class"))

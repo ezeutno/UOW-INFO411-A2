@@ -5,6 +5,8 @@ dataset = read.csv("creditworthiness.csv")
 
 dataset = dataset[dataset$credit.rating!=0, ]
 
+dataset$credit.rating <- as.factor(dataset$credit.rating)
+
 nrow(dataset)
 
 library(caTools)
@@ -17,3 +19,5 @@ length(training_set)
 nrow(training_set)
 length(test_set)
 nrow(test_set)
+
+str(dataset)
