@@ -2,6 +2,8 @@
 # the dataset.
 library(e1071)
 svmModel <- svm(credit.rating ~ ., data = training_set)
+summary(svmModel)
+svmModel
 
 # Predict the credit rating of a hypothetical median customer, i.e.,
 # one with the attributes listed in Table 1. Report decision values as well.
