@@ -58,6 +58,6 @@ sum(diag(cm.rf))/sum(cm.rf)
 
 tree.rf
 
-png("result/2_tree.png")
+png("result/2_rf_tree.png")
 plot(tree.rf)
 dev.off()
