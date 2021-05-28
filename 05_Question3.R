@@ -16,6 +16,7 @@ pred
 # this SVM on the test set, and also report the overall accuracy rate.
 
 cm.svm = table(test_set$credit.rating, predict(svmModel, newdata=test_set, type = "class"))
+cm.svm
 sum(diag(cm.svm))/sum(cm.svm)
 
 # Automatically or manually tune the SVM to improve prediction
