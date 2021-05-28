@@ -5,12 +5,12 @@ dataset = read.csv("creditworthiness.csv")
 
 dataset = dataset[dataset$credit.rating!=0, ]
 
-dataset$credit.rating <- as.factor(dataset$credit.rating)
+dataset$credit.rating <- as.factor(dataset$credit.rating) 
 
 nrow(dataset)
 
 library(caTools)
-split = sample.split(dataset$credit.rating, SplitRatio = 1/2)
+split = sample.split(dataset$credit.rating, SplitRatio = 0.5)
 
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
@@ -21,3 +21,5 @@ length(test_set)
 nrow(test_set)
 
 str(dataset)
+
+
