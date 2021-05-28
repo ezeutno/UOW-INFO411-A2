@@ -52,21 +52,40 @@ print(tree)
 
 library(randomForest)
 
+# Try to find the best paramter on randomForest
+
 a=c()
 
-for (i in 1:300) {
+for (i in 1:50) {
   tree.rf <- randomForest(credit.rating ~ ., data = training_set,ntree = 200, mtry = i, importance = TRUE,proximity = TRUE)
   cm.rf <- table(test_set$credit.rating, predict(tree.rf, newdata=test_set, type = "class"))
   a[i] = sum(diag(cm.rf))/sum(cm.rf)
 }
 
 png("result/2_rf_tree-diag.png")
-plot(1:300, a)
+plot(1:50, a)
 dev.off()
 
+a=c()
 
-# tree.rf
+for (i in 1:10) {
+  tree.rf <- randomForest(credit.rating ~ ., data = training_set,ntree = round(((i^3)/1000)*32000), mtry = i, importance = TRUE,proximity = TRUE)
+  cm.rf <- table(test_set$credit.rating, predict(tree.rf, newdata=test_set, type = "class"))
+  a[i] = sum(diag(cm.rf))/sum(cm.rf)
+}
 
-# png("result/2_rf_tree.png")
-# plot(tree.rf)
-# dev.off()
+png("result/2_rf_tree-diag2.png")
+plot(1:10, a)
+dev.off()
+
+tree.rf <- randomForest(credit.rating ~ ., data = training_set,ntree = 200, mtry = 25, importance = TRUE,proximity = TRUE)
+tree.rf
+
+png("result/2_rf_tree.png")
+plot(tree.rf)
+dev.off()
+
+# f.	Produce the confusion matrix for predicting the credit rating from this forest on the test set, and also report the overall accuracy rate.
+
+cm.rf <- table(test_set$credit.rating, predict(tree.rf, newdata=test_set, type = "class"))
+sum(diag(cm.rf))/sum(cm.rf)
