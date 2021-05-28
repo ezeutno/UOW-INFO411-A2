@@ -28,4 +28,5 @@ svmModel.tuned <- svmModel.tune$best.model
 summary(svmModel.tune)
 
 cm.svmTuned = table(test_set$credit.rating, predict(svmModel.tuned, newdata=test_set, type = "class"))
+cm.svmTuned
 sum(diag(cm.svmTuned))/sum(cm.svmTuned)
