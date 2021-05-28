@@ -11,7 +11,7 @@ nbModel
 # one with the attributes listed in Table 1. Report predicted probabilities as
 # well.
 
-median_value
+# median_value
 pred <- predict(nbModel, newdata=median_value)
 pred
 

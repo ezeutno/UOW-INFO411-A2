@@ -8,7 +8,7 @@ svmModel
 # Predict the credit rating of a hypothetical median customer, i.e.,
 # one with the attributes listed in Table 1. Report decision values as well.
 
-median_value
+# median_value
 pred <- predict(svmModel, newdata=median_value)
 pred
 
