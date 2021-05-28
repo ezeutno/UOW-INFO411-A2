@@ -8,6 +8,7 @@ svmModel <- svm(credit.rating ~ ., data = training_set)
 
 median_value
 pred <- predict(svmModel, newdata=median_value)
+pred
 
 # Produce the confusion matrix for predicting the credit rating from
 # this SVM on the test set, and also report the overall accuracy rate.
